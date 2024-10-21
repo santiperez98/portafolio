@@ -4,14 +4,11 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import heroImage from "../public/yo.png"; // Asegúrate de reemplazar con la ruta de tu imagen
 import techLogo1 from "../public/js.png"; // Ruta del logo de la tecnología 1
-import techLogo2 from "../public/react.png"; // Ruta del logo de la tecnología 2
-import techLogo3 from "../public/redux.png"; // Ruta del logo de la tecnología 3
-import techLogo4 from "../public/css.png"; // Ruta del logo de la tecnología 4
+import techLogo2 from "../public/css.png"; // Ruta del logo de la tecnología 2
+import techLogo3 from "../public/figma.png"; // Ruta del logo de la tecnología 3
+import techLogo4 from "../public/next.png"; // Ruta del logo de la tecnología 4
 import techLogo5 from "../public/node.png"; // Ruta del logo de la tecnología 5
-import techLogo6 from "../public/tail.png"; // Ruta del logo de la tecnología 6
-import techLogo7 from "../public/next.png"; // Ruta del logo de la tecnología 7
-import techLogo8 from "../public/post.png"; // Ruta del logo de la tecnología 8
-import techLogo9 from "../public/figma.png"; // Ruta del logo de la tecnología 9
+import techLogo6 from "../public/react.png"; // Ruta del logo de la tecnología 6
 import { useEffect, useState } from "react";
 
 const Hero = () => {
@@ -42,7 +39,7 @@ const Hero = () => {
     <section className="relative bg-[#1c1c1c] text-white h-screen flex items-center justify-center px-10 font-mono overflow-hidden">
       {/* Logos de las tecnologías como fondo */}
       <div className="absolute inset-0 flex justify-center items-center">
-        {[techLogo1, techLogo2, techLogo3, techLogo4, techLogo5, techLogo6, techLogo7, techLogo8, techLogo9].map((logo, index) => (
+        {[techLogo1, techLogo2, techLogo3, techLogo4, techLogo5, techLogo6].map((logo, index) => (
           <ReboundingImage key={index} src={logo} alt={`Logo tecnología ${index + 1}`} />
         ))}
       </div>
@@ -123,39 +120,64 @@ const Hero = () => {
 };
 
 const ReboundingImage = ({ src, alt }) => {
-  const [position, setPosition] = useState({ x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight });
-  const [direction, setDirection] = useState({ x: (Math.random() > 0.5 ? 1 : -1) * 2, y: (Math.random() > 0.5 ? 1 : -1) * 2 }); // Direcciones aleatorias
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [direction, setDirection] = useState({ x: 0, y: 0 });
+  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
-    const handleMovement = () => {
+    // Configura el tamaño de la ventana solo en el cliente
+    const handleResize = () => {
+      setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+    };
+    
+    handleResize(); // Llama a la función una vez al inicio
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    // Solo se ejecuta en el cliente
+    const randomPosition = () => ({
+      x: Math.random() * (windowSize.width - 100), // 100 es el ancho de la imagen
+      y: Math.random() * (windowSize.height - 100) // 100 es el alto de la imagen
+    });
+
+    const randomDirection = () => ({
+      x: (Math.random() > 0.5 ? 1 : -1) * 2,
+      y: (Math.random() > 0.5 ? 1 : -1) * 2
+    });
+
+    setPosition(randomPosition());
+    setDirection(randomDirection());
+
+    const interval = setInterval(() => {
       setPosition((prev) => {
         let newX = prev.x + direction.x;
         let newY = prev.y + direction.y;
 
         // Colisión con los límites de la ventana
-        if (newX <= 0 || newX >= window.innerWidth - 100) { // Ajusta el valor 100 al ancho de tus imágenes
-          newX = Math.max(0, Math.min(newX, window.innerWidth - 100)); // Mantiene la posición en límites
+        if (newX <= 0 || newX >= windowSize.width - 100) { // Ajusta el valor 100 al ancho de tus imágenes
+          newX = Math.max(0, Math.min(newX, windowSize.width - 100)); // Mantiene la posición en límites
           direction.x = -direction.x; // Cambia la dirección en X
         }
-        if (newY <= 0 || newY >= window.innerHeight - 100) { // Ajusta el valor 100 a la altura de tus imágenes
-          newY = Math.max(0, Math.min(newY, window.innerHeight - 100)); // Mantiene la posición en límites
+        if (newY <= 0 || newY >= windowSize.height - 100) { // Ajusta el valor 100 a la altura de tus imágenes
+          newY = Math.max(0, Math.min(newY, windowSize.height - 100)); // Mantiene la posición en límites
           direction.y = -direction.y; // Cambia la dirección en Y
         }
 
         return { x: newX, y: newY }; // Retorna la nueva posición
       });
-    };
-
-    const interval = setInterval(handleMovement, 16); // Actualiza la posición cada 16 ms
+    }, 16); // Actualiza la posición cada 16 ms
 
     return () => clearInterval(interval);
-  }, [direction]);
+  }, [direction, windowSize]);
 
   return (
     <motion.div
       className="absolute"
-      style={{ left: `${position.x}px`, top: `${position.y}px` }} // Posición de la imagen
-      transition={{ duration: 0, ease: "linear" }} // Sin transición para el movimiento instantáneo
+      style={{ left: `${position.x}px`, top: `${position.y}px` }}
+      whileHover={{ scale: 1.1 }} // Efecto de hover
     >
       <Image src={src} alt={alt} width={100} height={100} />
     </motion.div>
