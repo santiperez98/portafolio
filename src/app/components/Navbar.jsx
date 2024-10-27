@@ -4,8 +4,9 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { FaUser, FaProjectDiagram, FaEnvelope } from 'react-icons/fa';
-import Image from 'next/image'; // Importar componente de imagen
-import image1 from '../public/logosanti.png'
+import Image from 'next/image';
+import image1 from '../public/logosanti.png';
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -14,26 +15,21 @@ const Navbar = () => {
   };
 
   return (
-    <motion.nav
-      className="fixed top-0 left-0 h-full bg-[#1c1c1c] text-white p-5 z-50 font-mono shadow-lg"
-      initial={{ x: '-100%' }}
-      animate={{ x: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      <div className="flex flex-col justify-between h-full">
+    <nav className="fixed top-0 left-0 w-full bg-[#1c1c1c] text-white px-5 py-3 z-50 shadow-lg font-mono">
+      <div className="flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="mb-10">
+        <Link href="/" className="flex items-center space-x-2">
           <Image
-            src={image1} // Ruta de tu logo
+            src={image1}
             alt="Logo"
-            width={50}  // Ajusta el tamaño según tu preferencia
-            height={50}
-            className="hover:opacity-80 transition-opacity duration-300" // Efecto hover en el logo
+            width={40}
+            height={40}
+            className="hover:opacity-80 transition-opacity duration-300"
           />
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex flex-col space-y-6 text-lg items-center">
+        <div className="hidden md:flex space-x-8 text-lg">
           <Link href="#about" className="hover:text-teal-400 transition-colors duration-300">
             <FaUser size={24} />
           </Link>
@@ -54,40 +50,40 @@ const Navbar = () => {
             &#9776;
           </button>
         </div>
-
-        {/* Mobile Menu */}
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden mt-3 flex flex-col space-y-6 items-center"
-          >
-            <Link
-              href="#about"
-              className="block py-2 px-4 hover:bg-teal-400 hover:text-black transition-all duration-300"
-              onClick={toggleMenu}
-            >
-              <FaUser size={24} />
-            </Link>
-            <Link
-              href="#projects"
-              className="block py-2 px-4 hover:bg-teal-400 hover:text-black transition-all duration-300"
-              onClick={toggleMenu}
-            >
-              <FaProjectDiagram size={24} />
-            </Link>
-            <Link
-              href="#contact"
-              className="block py-2 px-4 hover:bg-teal-400 hover:text-black transition-all duration-300"
-              onClick={toggleMenu}
-            >
-              <FaEnvelope size={24} />
-            </Link>
-          </motion.div>
-        )}
       </div>
-    </motion.nav>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: 'auto' }}
+          transition={{ duration: 0.3 }}
+          className="flex flex-col space-y-4 mt-3 items-center md:hidden"
+        >
+          <Link
+            href="#about"
+            className="py-2 px-4 hover:bg-teal-400 hover:text-black transition-all duration-300 w-full text-center"
+            onClick={toggleMenu}
+          >
+            About <FaUser className="inline-block ml-1" />
+          </Link>
+          <Link
+            href="#projects"
+            className="py-2 px-4 hover:bg-teal-400 hover:text-black transition-all duration-300 w-full text-center"
+            onClick={toggleMenu}
+          >
+            Projects <FaProjectDiagram className="inline-block ml-1" />
+          </Link>
+          <Link
+            href="#contact"
+            className="py-2 px-4 hover:bg-teal-400 hover:text-black transition-all duration-300 w-full text-center"
+            onClick={toggleMenu}
+          >
+            Contact <FaEnvelope className="inline-block ml-1" />
+          </Link>
+        </motion.div>
+      )}
+    </nav>
   );
 };
 

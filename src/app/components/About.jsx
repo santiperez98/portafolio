@@ -35,6 +35,27 @@ const About = () => {
         >
           Me motiva la programación porque lo vengo haciendo desde hace casi 2 años y me encanta saber que de un código sale a producción una web funcional con una interfaz para el usuario. Disfruto liderar estos proyectos.
         </motion.p>
+                {/* Enlaces de contacto */}
+        <div className="mt-8 flex justify-center gap-6">
+          <motion.a
+            href="https://github.com/tuusuario"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ color: "#181717" }} // Color de GitHub
+            className="flex items-center transition-colors duration-300"
+          >
+            <FaGithub size={24} className="mr-2" /> GitHub
+          </motion.a>
+          <motion.a
+            href="https://www.linkedin.com/in/tuusuario"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ color: "#0A66C2" }} // Color de LinkedIn
+            className="flex items-center transition-colors duration-300"
+          >
+            <FaLinkedin size={24} className="mr-2" /> LinkedIn
+          </motion.a>
+        </div>
 
         {/* Habilidades con iconos */}
         <div className="mt-8 flex flex-wrap justify-center gap-4">
@@ -61,27 +82,7 @@ const About = () => {
           ))}
         </div>
 
-        {/* Enlaces de contacto */}
-        <div className="mt-8 flex justify-center gap-6">
-          <motion.a
-            href="https://github.com/tuusuario"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ color: "#181717" }} // Color de GitHub
-            className="flex items-center transition-colors duration-300"
-          >
-            <FaGithub size={24} className="mr-2" /> GitHub
-          </motion.a>
-          <motion.a
-            href="https://www.linkedin.com/in/tuusuario"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ color: "#0A66C2" }} // Color de LinkedIn
-            className="flex items-center transition-colors duration-300"
-          >
-            <FaLinkedin size={24} className="mr-2" /> LinkedIn
-          </motion.a>
-        </div>
+
       </div>
     </section>
   );
