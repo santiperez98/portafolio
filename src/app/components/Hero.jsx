@@ -2,28 +2,28 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import heroImage from "../public/yo.png"; // Asegúrate de reemplazar con la ruta de tu imagen
+import heroImage from "../public/yo.png";
 import { useEffect, useState } from "react";
-import techLogo1 from "../public/js.png"; // Ruta del logo de la tecnología 1
-import techLogo2 from "../public/css.png"; // Ruta del logo de la tecnología 2
-import techLogo3 from "../public/figma.png"; // Ruta del logo de la tecnología 3
-import techLogo4 from "../public/next.png"; // Ruta del logo de la tecnología 4
-import techLogo5 from "../public/node.png"; // Ruta del logo de la tecnología 5
-import techLogo6 from "../public/react.png"; // Ruta del logo de la tecnología 6
+import techLogo1 from "../public/js.png";
+import techLogo2 from "../public/css.png";
+import techLogo3 from "../public/figma.png";
+import techLogo4 from "../public/next.png";
+import techLogo5 from "../public/node.png";
+import techLogo6 from "../public/react.png";
 
-// Array con las rutas de los logos que se moverán
-const logos = [techLogo1, techLogo2, techLogo3, techLogo4, techLogo5, techLogo6]; // Asegúrate de tener estas imágenes
+const logos = [techLogo1, techLogo2, techLogo3, techLogo4, techLogo5, techLogo6];
 
 const Hero = () => {
   const [typedText, setTypedText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isTyping, setIsTyping] = useState(true); // Para controlar si estamos escribiendo
+  const [isTyping, setIsTyping] = useState(true);
+  const [logosData, setLogosData] = useState([]);
 
   const messages = [
-    "Bienvenido a mi portafolio. Aquí puedes encontrar mis proyectos y habilidades.", // Español
-    "Welcome to my portfolio. Here you can find my projects and skills.", // Inglés
-    "Soy un desarrollador Full Stack.", // Español
-    "I am a Full Stack Developer.", // Inglés
+    "Bienvenido a mi portafolio. Aquí puedes encontrar mis proyectos y habilidades.",
+    "Welcome to my portfolio. Here you can find my projects and skills.",
+    "Soy un desarrollador Full Stack.",
+    "I am a Full Stack Developer.",
   ];
 
   useEffect(() => {
@@ -32,63 +32,64 @@ const Hero = () => {
         if (typedText.length < messages[currentIndex].length) {
           setTypedText((prev) => prev + messages[currentIndex][typedText.length]);
         } else {
-          setIsTyping(false); // Dejar de escribir cuando el mensaje esté completo
+          setIsTyping(false);
         }
-      }, 15); // Ajusta la velocidad de escritura aquí
+      }, 15);
 
       return () => clearTimeout(typingEffect);
     } else {
       const pauseBeforeNextMessage = setTimeout(() => {
         setCurrentIndex((prev) => (prev + 1) % messages.length);
-        setTypedText(""); // Reinicia el texto para el siguiente mensaje
-        setIsTyping(true); // Reiniciar el ciclo de escritura
-      }, 2000); // Pausa de 2 segundos antes de cambiar el mensaje
+        setTypedText("");
+        setIsTyping(true);
+      }, 2000);
 
       return () => clearTimeout(pauseBeforeNextMessage);
     }
   }, [typedText, isTyping, currentIndex, messages]);
 
-  const generateLogosData = (count) => {
-    const data = [];
-    for (let i = 0; i < count; i++) {
-      data.push({
-        x: Math.random() * window.innerWidth,
-        y: Math.random() * window.innerHeight,
-        dx: (Math.random() * 2 - 1) * 1, // velocidad en el eje X
-        dy: (Math.random() * 2 - 1) * 1, // velocidad en el eje Y
-      });
-    }
-    return data;
-  };
-
-  const [logosData, setLogosData] = useState(generateLogosData(logos.length));
-
   useEffect(() => {
-    const moveLogos = () => {
-      setLogosData((prevLogosData) =>
-        prevLogosData.map((logo) => {
-          let newX = logo.x + logo.dx;
-          let newY = logo.y + logo.dy;
+    if (typeof window !== "undefined") {
+      const generateLogosData = (count) => {
+        const data = [];
+        for (let i = 0; i < count; i++) {
+          data.push({
+            x: Math.random() * window.innerWidth,
+            y: Math.random() * window.innerHeight,
+            dx: (Math.random() * 2 - 1) * 1,
+            dy: (Math.random() * 2 - 1) * 1,
+          });
+        }
+        return data;
+      };
 
-          if (newX <= 0 || newX >= window.innerWidth - 100) {
-            logo.dx = -logo.dx;
-          }
-          if (newY <= 0 || newY >= window.innerHeight - 100) {
-            logo.dy = -logo.dy;
-          }
+      setLogosData(generateLogosData(logos.length));
 
-          return {
-            ...logo,
-            x: newX,
-            y: newY,
-          };
-        })
-      );
-    };
+      const moveLogos = () => {
+        setLogosData((prevLogosData) =>
+          prevLogosData.map((logo) => {
+            let newX = logo.x + logo.dx;
+            let newY = logo.y + logo.dy;
 
-    const interval = setInterval(moveLogos, 20); // Ajusta la velocidad del movimiento
+            if (newX <= 0 || newX >= window.innerWidth - 100) {
+              logo.dx = -logo.dx;
+            }
+            if (newY <= 0 || newY >= window.innerHeight - 100) {
+              logo.dy = -logo.dy;
+            }
 
-    return () => clearInterval(interval);
+            return {
+              ...logo,
+              x: newX,
+              y: newY,
+            };
+          })
+        );
+      };
+
+      const interval = setInterval(moveLogos, 20);
+      return () => clearInterval(interval);
+    }
   }, []);
 
   return (
