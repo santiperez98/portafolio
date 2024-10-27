@@ -1,19 +1,24 @@
-"use client"; 
+"use client";
 
 import { motion } from "framer-motion";
 import Image from "next/image";
 import heroImage from "../public/yo.png"; // Asegúrate de reemplazar con la ruta de tu imagen
+import { useEffect, useState } from "react";
 import techLogo1 from "../public/js.png"; // Ruta del logo de la tecnología 1
 import techLogo2 from "../public/css.png"; // Ruta del logo de la tecnología 2
 import techLogo3 from "../public/figma.png"; // Ruta del logo de la tecnología 3
 import techLogo4 from "../public/next.png"; // Ruta del logo de la tecnología 4
 import techLogo5 from "../public/node.png"; // Ruta del logo de la tecnología 5
 import techLogo6 from "../public/react.png"; // Ruta del logo de la tecnología 6
-import { useEffect, useState } from "react";
+
+// Array con las rutas de los logos que se moverán
+const logos = [techLogo1, techLogo2, techLogo3, techLogo4, techLogo5, techLogo6]; // Asegúrate de tener estas imágenes
 
 const Hero = () => {
   const [typedText, setTypedText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTyping, setIsTyping] = useState(true); // Para controlar si estamos escribiendo
+
   const messages = [
     "Bienvenido a mi portafolio. Aquí puedes encontrar mis proyectos y habilidades.", // Español
     "Welcome to my portfolio. Here you can find my projects and skills.", // Inglés
@@ -22,31 +27,90 @@ const Hero = () => {
   ];
 
   useEffect(() => {
-    const typingEffect = setInterval(() => {
-      if (typedText.length < messages[currentIndex].length) {
-        setTypedText((prev) => prev + messages[currentIndex][typedText.length]);
-      } else {
-        // Mueve al siguiente mensaje y reinicia el texto
-        setCurrentIndex((prev) => (prev + 1) % messages.length);
-        setTypedText(""); // Reset para el siguiente mensaje
-      }
-    }, 100); // Ajusta la velocidad de escritura aquí
+    if (isTyping) {
+      const typingEffect = setTimeout(() => {
+        if (typedText.length < messages[currentIndex].length) {
+          setTypedText((prev) => prev + messages[currentIndex][typedText.length]);
+        } else {
+          setIsTyping(false); // Dejar de escribir cuando el mensaje esté completo
+        }
+      }, 15); // Ajusta la velocidad de escritura aquí
 
-    return () => clearInterval(typingEffect); // Limpia el intervalo al desmontar el componente
-  }, [currentIndex, typedText, messages]);
+      return () => clearTimeout(typingEffect);
+    } else {
+      const pauseBeforeNextMessage = setTimeout(() => {
+        setCurrentIndex((prev) => (prev + 1) % messages.length);
+        setTypedText(""); // Reinicia el texto para el siguiente mensaje
+        setIsTyping(true); // Reiniciar el ciclo de escritura
+      }, 2000); // Pausa de 2 segundos antes de cambiar el mensaje
+
+      return () => clearTimeout(pauseBeforeNextMessage);
+    }
+  }, [typedText, isTyping, currentIndex, messages]);
+
+  const generateLogosData = (count) => {
+    const data = [];
+    for (let i = 0; i < count; i++) {
+      data.push({
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        dx: (Math.random() * 2 - 1) * 1, // velocidad en el eje X
+        dy: (Math.random() * 2 - 1) * 1, // velocidad en el eje Y
+      });
+    }
+    return data;
+  };
+
+  const [logosData, setLogosData] = useState(generateLogosData(logos.length));
+
+  useEffect(() => {
+    const moveLogos = () => {
+      setLogosData((prevLogosData) =>
+        prevLogosData.map((logo) => {
+          let newX = logo.x + logo.dx;
+          let newY = logo.y + logo.dy;
+
+          if (newX <= 0 || newX >= window.innerWidth - 100) {
+            logo.dx = -logo.dx;
+          }
+          if (newY <= 0 || newY >= window.innerHeight - 100) {
+            logo.dy = -logo.dy;
+          }
+
+          return {
+            ...logo,
+            x: newX,
+            y: newY,
+          };
+        })
+      );
+    };
+
+    const interval = setInterval(moveLogos, 20); // Ajusta la velocidad del movimiento
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section className="relative bg-[#1c1c1c] text-white h-screen flex items-center justify-center px-10 font-mono overflow-hidden">
-      {/* Logos de las tecnologías como fondo */}
-      <div className="absolute inset-0 flex justify-center items-center">
-        {[techLogo1, techLogo2, techLogo3, techLogo4, techLogo5, techLogo6].map((logo, index) => (
-          <ReboundingImage key={index} src={logo} alt={`Logo tecnología ${index + 1}`} />
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        {logosData.map((logo, i) => (
+          <motion.div
+            key={i}
+            animate={{ x: logo.x, y: logo.y }}
+            transition={{ duration: 0.02, ease: "linear" }}
+            className="absolute"
+          >
+            <Image
+              src={logos[i]}
+              alt={`Logo ${i}`}
+              className="opacity-40 w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24"
+            />
+          </motion.div>
         ))}
       </div>
 
-      {/* Contenedor principal dividiendo en dos columnas */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center relative z-10">
-        {/* Imagen a la izquierda */}
+      <div className="relative grid grid-cols-1 md:grid-cols-2 gap-10 items-center z-10">
         <motion.div
           initial={{ x: -100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
@@ -56,13 +120,12 @@ const Hero = () => {
           <Image
             src={heroImage}
             alt="Imagen de Santi"
-            width={400} // Ajusta el tamaño de la imagen
+            width={400}
             height={400}
-            className="rounded-lg shadow-lg"
+            className="rounded-lg shadow-lg object-contain max-w-full h-auto"
           />
         </motion.div>
 
-        {/* Texto a la derecha */}
         <motion.div
           initial={{ x: 100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
@@ -70,14 +133,11 @@ const Hero = () => {
           className="text-center md:text-left"
         >
           <h1 className="text-5xl font-bold">👋 ¡Hola! Soy Santiago Perez</h1>
-          <p className="mt-4 text-xl">
-            {typedText} {/* Aquí se muestra el texto con el efecto de máquina de escribir */}
-          </p>
+          <p className="mt-4 text-xl">{typedText}</p>
 
-          {/* Botones de acción */}
           <div className="mt-6 space-x-4">
             <motion.a
-              href="#projects" // Puedes enlazar a la sección de proyectos
+              href="#projects"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               className="inline-block px-6 py-3 bg-teal-400 text-black rounded-lg text-lg font-semibold shadow-md hover:bg-teal-500 transition-colors"
@@ -86,7 +146,7 @@ const Hero = () => {
             </motion.a>
 
             <motion.a
-              href="https://www.linkedin.com/in/tu-perfil" // Reemplaza con tu perfil de LinkedIn
+              href="https://www.linkedin.com/in/tu-perfil"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.1 }}
@@ -97,14 +157,14 @@ const Hero = () => {
             </motion.a>
 
             <motion.a
-              href="mailto:tu-email@example.com" // Reemplaza con tu correo electrónico
+              href="mailto:tu-email@example.com"
               className="inline-block px-6 py-3 bg-gray-600 text-white rounded-lg text-lg font-semibold shadow-md hover:bg-gray-700 transition-colors"
             >
               Contactar
             </motion.a>
 
             <motion.a
-              href="/ruta/a/tu/cv.pdf" // Reemplaza con la ruta a tu CV
+              href="/ruta/a/tu/cv.pdf"
               download
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
@@ -116,71 +176,6 @@ const Hero = () => {
         </motion.div>
       </div>
     </section>
-  );
-};
-
-const ReboundingImage = ({ src, alt }) => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [direction, setDirection] = useState({ x: 0, y: 0 });
-  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
-
-  useEffect(() => {
-    // Configura el tamaño de la ventana solo en el cliente
-    const handleResize = () => {
-      setWindowSize({ width: window.innerWidth, height: window.innerHeight });
-    };
-    
-    handleResize(); // Llama a la función una vez al inicio
-    window.addEventListener('resize', handleResize);
-
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  useEffect(() => {
-    // Solo se ejecuta en el cliente
-    const randomPosition = () => ({
-      x: Math.random() * (windowSize.width - 100), // 100 es el ancho de la imagen
-      y: Math.random() * (windowSize.height - 100) // 100 es el alto de la imagen
-    });
-
-    const randomDirection = () => ({
-      x: (Math.random() > 0.5 ? 1 : -1) * 2,
-      y: (Math.random() > 0.5 ? 1 : -1) * 2
-    });
-
-    setPosition(randomPosition());
-    setDirection(randomDirection());
-
-    const interval = setInterval(() => {
-      setPosition((prev) => {
-        let newX = prev.x + direction.x;
-        let newY = prev.y + direction.y;
-
-        // Colisión con los límites de la ventana
-        if (newX <= 0 || newX >= windowSize.width - 100) { // Ajusta el valor 100 al ancho de tus imágenes
-          newX = Math.max(0, Math.min(newX, windowSize.width - 100)); // Mantiene la posición en límites
-          direction.x = -direction.x; // Cambia la dirección en X
-        }
-        if (newY <= 0 || newY >= windowSize.height - 100) { // Ajusta el valor 100 a la altura de tus imágenes
-          newY = Math.max(0, Math.min(newY, windowSize.height - 100)); // Mantiene la posición en límites
-          direction.y = -direction.y; // Cambia la dirección en Y
-        }
-
-        return { x: newX, y: newY }; // Retorna la nueva posición
-      });
-    }, 16); // Actualiza la posición cada 16 ms
-
-    return () => clearInterval(interval);
-  }, [direction, windowSize]);
-
-  return (
-    <motion.div
-      className="absolute"
-      style={{ left: `${position.x}px`, top: `${position.y}px` }}
-      whileHover={{ scale: 1.1 }} // Efecto de hover
-    >
-      <Image src={src} alt={alt} width={100} height={100} />
-    </motion.div>
   );
 };
 
