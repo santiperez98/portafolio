@@ -17,7 +17,7 @@ const About = () => {
       { icon: <SiTailwindcss size={30} />, label: "Tailwind CSS", color: "#06B6D4" },
       { icon: <SiNextdotjs size={30} />, label: "Next.js", color: "#000000" },
       { icon: <SiNodedotjs size={30} />, label: "Node.js", color: "#8CC84B" },
-      { icon: <SiVite size={30} />, label: "Vite", color: "#646CFF" }, // Agrega Vite aquí
+      { icon: <SiVite size={30} />, label: "Vite", color: "#646CFF" },
     ],
     "Bases de datos": [
       { icon: <SiPostgresql size={30} />, label: "PostgreSQL", color: "#336791" },
