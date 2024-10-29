@@ -16,7 +16,6 @@ import techLogo9 from "../public/redux1.png";
 import techLogo10 from "../public/tail.png";
 import techLogo11 from "../public/postgre.png";
 
-
 const logos = [techLogo1, techLogo2, techLogo3, techLogo4, techLogo5, techLogo6, techLogo7, techLogo8, techLogo9, techLogo10, techLogo11];
 
 const Hero = () => {
