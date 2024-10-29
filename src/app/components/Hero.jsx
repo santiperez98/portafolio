@@ -10,8 +10,14 @@ import techLogo3 from "../public/figma.png";
 import techLogo4 from "../public/next.png";
 import techLogo5 from "../public/node.png";
 import techLogo6 from "../public/react.png";
+import techLogo7 from "../public/vite.png";
+import techLogo8 from "../public/html.png";
+import techLogo9 from "../public/redux1.png";
+import techLogo10 from "../public/tail.png";
+import techLogo11 from "../public/postgre.png";
 
-const logos = [techLogo1, techLogo2, techLogo3, techLogo4, techLogo5, techLogo6];
+
+const logos = [techLogo1, techLogo2, techLogo3, techLogo4, techLogo5, techLogo6, techLogo7, techLogo8, techLogo9, techLogo10, techLogo11];
 
 const Hero = () => {
   const [typedText, setTypedText] = useState("");
