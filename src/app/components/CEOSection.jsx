@@ -4,58 +4,50 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import image1 from '../public/este.png';
 
-
 const CEOSection = () => {
   return (
-    <section className="flex flex-col items-center justify-center py-20 bg-[#1c1c1c] text-white font-mono">
-      <motion.div
-        initial={{ opacity: 0, y: 100 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="text-center"
-      >
+    <section className="bg-[#1c1c1c] text-[#10f7c4] py-20 px-10 font-mono flex flex-col items-center">
+      <div className="container mx-auto flex flex-col items-center">
+        
+        {/* Imagen con animación */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
         >
           <Image
             src={image1}
             alt="CEO of Desweby"
-            className="w-48 h-48   mx-auto mb-6"
+            className="w-48 h-48 rounded-full mx-auto mb-6"
             width={192} 
             height={192} 
           />
         </motion.div>
-        
+
+        {/* Título animado */}
         <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.8 }}
-          className="text-3xl font-semibold"
+          initial={{ y: -50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          className="text-3xl font-semibold text-center"
         >
-          Santi - CEO de Desweby
+          Desarrollador y Fundador de Desweby
         </motion.h2>
-        
+
+        {/* Descripción humilde */}
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8 }}
-          className="text-lg mt-4"
+          className="text-lg mt-4 text-center"
         >
-          Desweby es una empresa dedicada al desarrollo de páginas web, tiendas online, marketing digital, community management, SEO y diseño UX/UI.
+          Soy desarrollador especializado en la creación de soluciones web funcionales y de calidad. Con Desweby, me dedico a brindar servicios en desarrollo web, marketing digital, community management, SEO y diseño UX/UI.
         </motion.p>
-        
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.8 }}
-          className="mt-6"
-        >
 
-        </motion.div>
-      </motion.div>
+  
+        
+      </div>
     </section>
   );
 };

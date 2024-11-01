@@ -24,73 +24,78 @@ const Contact = () => {
     }),
     onSubmit: (values) => {
       console.log(values);
-      
+      // Aquí puedes integrar el envío del correo electrónico
     },
   });
 
   return (
     <section
       id="contact"
-      className="bg-[#1c1c1c] text-gray-800 py-20 font-mono overflow-hidden flex justify-center items-center"
+      className="bg-[#0a0a0a] text-gray-200 py-20 font-mono flex justify-center items-center min-h-screen"
     >
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="bg-white bg-opacity-80 backdrop-blur-lg rounded-lg p-8 shadow-lg w-full max-w-md"
+        transition={{ duration: 0.8 }}
+        className="bg-white bg-opacity-10 backdrop-blur-lg rounded-lg p-10 shadow-lg w-full max-w-md mx-4"
       >
-        <h2 className="text-4xl font-bold mb-6 text-center">Contacto</h2>
-        <form onSubmit={formik.handleSubmit} className="mt-6 space-y-4">
+        <h2 className="text-5xl font-extrabold mb-8 text-center text-cyan-400 glow-text">
+          Contacto
+        </h2>
+        <form onSubmit={formik.handleSubmit} className="space-y-6">
           <motion.input
             type="text"
+            name="name" // Agregado atributo name
             placeholder="Tu nombre"
             value={formik.values.name}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            className={`border-2 border-gray-300 p-3 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 transform hover:scale-105 ${
+            className={`w-full p-4 rounded-lg bg-transparent border-2 border-cyan-400 text-white focus:ring-2 focus:ring-cyan-500 transition-all duration-300 transform hover:scale-105 ${
               formik.touched.name && formik.errors.name ? "border-red-500" : ""
             }`}
             required
           />
           {formik.touched.name && formik.errors.name && (
-            <p className="text-red-500 text-sm">{formik.errors.name}</p>
+            <p className="text-red-400 text-sm">{formik.errors.name}</p>
           )}
 
           <motion.input
             type="email"
+            name="email" // Agregado atributo name
             placeholder="Tu correo"
             value={formik.values.email}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            className={`border-2 border-gray-300 p-3 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 transform hover:scale-105 ${
+            className={`w-full p-4 rounded-lg bg-transparent border-2 border-cyan-400 text-white focus:ring-2 focus:ring-cyan-500 transition-all duration-300 transform hover:scale-105 ${
               formik.touched.email && formik.errors.email ? "border-red-500" : ""
             }`}
             required
           />
           {formik.touched.email && formik.errors.email && (
-            <p className="text-red-500 text-sm">{formik.errors.email}</p>
+            <p className="text-red-400 text-sm">{formik.errors.email}</p>
           )}
 
           <motion.textarea
+            name="message" // Agregado atributo name
             placeholder="Tu mensaje"
             value={formik.values.message}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            className={`border-2 border-gray-300 p-3 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 transform hover:scale-105 ${
+            className={`w-full p-4 rounded-lg bg-transparent border-2 border-cyan-400 text-white focus:ring-2 focus:ring-cyan-500 transition-all duration-300 transform hover:scale-105 ${
               formik.touched.message && formik.errors.message ? "border-red-500" : ""
             }`}
             required
             rows={4}
           />
           {formik.touched.message && formik.errors.message && (
-            <p className="text-red-500 text-sm">{formik.errors.message}</p>
+            <p className="text-red-400 text-sm">{formik.errors.message}</p>
           )}
 
           <motion.button
             type="submit"
-            className="bg-blue-600 text-white py-3 px-6 rounded transition duration-300 transform hover:scale-105 hover:bg-blue-700 w-full"
+            className="w-full bg-cyan-600 text-white font-bold py-3 rounded-lg transition-transform duration-300 transform hover:scale-105 hover:bg-cyan-700 shadow-lg shadow-cyan-600/50"
           >
-            Enviar
+            Enviar Mensaje
           </motion.button>
         </form>
       </motion.div>
