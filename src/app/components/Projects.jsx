@@ -37,7 +37,7 @@ const Projects = () => {
         <div className="flex flex-col gap-12">
           {projectsData.map((project) => (
             <motion.div
-              key={project.id} // Usar id como clave
+              key={project.id} // Asegúrate de que cada proyecto tenga un 'id' único
               initial={{ opacity: 0, x: -100 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{
@@ -72,5 +72,6 @@ const Projects = () => {
     </section>
   );
 };
+
 
 export default Projects;
