@@ -24,7 +24,7 @@ const Contact = () => {
     }),
     onSubmit: (values) => {
       console.log(values);
-      // Aquí puedes integrar el envío del correo electrónico
+      
     },
   });
 
@@ -45,7 +45,7 @@ const Contact = () => {
         <form onSubmit={formik.handleSubmit} className="space-y-6">
           <motion.input
             type="text"
-            name="name" // Agregado atributo name
+            name="name" 
             placeholder="Tu nombre"
             value={formik.values.name}
             onChange={formik.handleChange}
@@ -61,7 +61,7 @@ const Contact = () => {
 
           <motion.input
             type="email"
-            name="email" // Agregado atributo name
+            name="email" 
             placeholder="Tu correo"
             value={formik.values.email}
             onChange={formik.handleChange}
@@ -76,7 +76,7 @@ const Contact = () => {
           )}
 
           <motion.textarea
-            name="message" // Agregado atributo name
+            name="message" 
             placeholder="Tu mensaje"
             value={formik.values.message}
             onChange={formik.handleChange}

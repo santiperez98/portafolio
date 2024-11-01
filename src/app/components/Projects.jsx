@@ -6,25 +6,24 @@ import Image from 'next/image';
 import image1 from '../public/este.png';
 import image2 from '../public/este.png';
 
-const projectsData = [
-  {
-    id: 1, // Agregar un identificador único
-    title: "Proyecto 1",
-    description: "Descripción breve del proyecto 1.",
-    image: image2,
-    technologies: [<FaReact />, <FaNodeJs />, <FaDatabase />],
-  },
-  {
-    id: 2, // Agregar un identificador único
-    title: "Proyecto 2",
-    description: "Descripción breve del proyecto 2.",
-    image: image1,
-    technologies: [<FaReact />, <FaNodeJs />, <FaDatabase />],
-  },
-  // Agrega más proyectos aquí
-];
-
 const Projects = () => {
+  const projectsData = [
+    {
+      id: 1, 
+      title: "Proyecto 1",
+      description: "Descripción breve del proyecto 1.",
+      image: image2,
+      technologies: [<FaReact key="react" />, <FaNodeJs key="node" />, <FaDatabase key="database" />],
+    },
+    {
+      id: 2, 
+      title: "Proyecto 2",
+      description: "Descripción breve del proyecto 2.",
+      image: image1,
+      technologies: [<FaReact key="react" />, <FaNodeJs key="node" />, <FaDatabase key="database" />],
+    },
+  ];
+
   return (
     <section id="projects" className="bg-[#1c1c1c] text-gray-200 py-20 font-mono">
       <motion.div
@@ -37,12 +36,12 @@ const Projects = () => {
         <div className="flex flex-col gap-12">
           {projectsData.map((project) => (
             <motion.div
-              key={project.id} // Asegúrate de que cada proyecto tenga un 'id' único
+              key={project.id} // Asegúrate de que 'id' es único para cada proyecto
               initial={{ opacity: 0, x: -100 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{
                 duration: 0.6,
-                delay: project.id * 0.3, // Cambiar para usar project.id
+                delay: project.id * 0.3,
               }}
               viewport={{ once: true }}
               className="flex bg-white/10 backdrop-blur-lg shadow-lg p-6 rounded-xl transition-transform transform hover:scale-105 hover:shadow-cyan-400/50 w-full md:w-3/4 lg:w-2/3 mx-auto"
@@ -59,7 +58,7 @@ const Projects = () => {
                 <p className="text-gray-300 my-4">{project.description}</p>
                 <div className="flex gap-4 text-2xl text-cyan-400">
                   {project.technologies.map((tech, techIndex) => (
-                    <span key={techIndex} className="hover:text-cyan-600 transition duration-200">
+                    <span key={`${project.id}-${techIndex}`} className="hover:text-cyan-600 transition duration-200">
                       {tech}
                     </span>
                   ))}
@@ -72,6 +71,5 @@ const Projects = () => {
     </section>
   );
 };
-
 
 export default Projects;
