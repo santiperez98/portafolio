@@ -24,7 +24,7 @@ const Contact = () => {
     }),
     onSubmit: (values) => {
       console.log(values);
-      // Aquí puedes manejar el envío del formulario, por ejemplo, enviarlo a un correo
+      
     },
   });
 

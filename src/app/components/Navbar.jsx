@@ -1,5 +1,4 @@
-'use client'; // Asegúrate de que este componente se ejecute en el cliente
-
+'use client';
 import { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';

@@ -10,7 +10,7 @@ module.exports = {
     
       extend: {
         colors: {
-          'matte-black': '#1c1c1c', // Define un nuevo color negro mate
+          'matte-black': '#1c1c1c', 
         },
       },
     },

@@ -24,8 +24,8 @@ const CEOSection = () => {
             src={image1}
             alt="CEO of Desweby"
             className="w-48 h-48   mx-auto mb-6"
-            width={192} // Ancho de la imagen
-            height={192} // Alto de la imagen
+            width={192} 
+            height={192} 
           />
         </motion.div>
         

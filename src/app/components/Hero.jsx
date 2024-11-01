@@ -54,7 +54,7 @@ const Hero = () => {
   }, [typedText, isTyping, currentIndex, messages]);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window === "undefined") return; {
       const generateLogosData = (count) => {
         const data = [];
         for (let i = 0; i < count; i++) {

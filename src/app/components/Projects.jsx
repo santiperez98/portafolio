@@ -29,7 +29,7 @@ const Projects = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{
                 duration: 0.5,
-                delay: index * 0.2, // Aumenta el delay para un efecto en cascada
+                delay: index * 0.2, 
               }}
               className={`bg-white shadow-lg p-5 rounded-lg transition-transform transform ${
                 index % 2 === 0 ? "scale-100" : "scale-100"
