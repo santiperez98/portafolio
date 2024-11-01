@@ -8,12 +8,14 @@ import image2 from '../public/este.png';
 
 const projectsData = [
   {
+    id: 1, // Agregar un identificador único
     title: "Proyecto 1",
     description: "Descripción breve del proyecto 1.",
     image: image2,
     technologies: [<FaReact />, <FaNodeJs />, <FaDatabase />],
   },
   {
+    id: 2, // Agregar un identificador único
     title: "Proyecto 2",
     description: "Descripción breve del proyecto 2.",
     image: image1,
@@ -33,14 +35,14 @@ const Projects = () => {
       >
         <h2 className="text-4xl font-bold text-cyan-400 mb-12">Proyectos</h2>
         <div className="flex flex-col gap-12">
-          {projectsData.map((project, index) => (
+          {projectsData.map((project) => (
             <motion.div
-              key={index}
+              key={project.id} // Usar id como clave
               initial={{ opacity: 0, x: -100 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{
                 duration: 0.6,
-                delay: index * 0.3,
+                delay: project.id * 0.3, // Cambiar para usar project.id
               }}
               viewport={{ once: true }}
               className="flex bg-white/10 backdrop-blur-lg shadow-lg p-6 rounded-xl transition-transform transform hover:scale-105 hover:shadow-cyan-400/50 w-full md:w-3/4 lg:w-2/3 mx-auto"
