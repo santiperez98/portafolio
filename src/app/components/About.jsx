@@ -17,7 +17,7 @@ const About = () => {
       { icon: <SiTailwindcss size={30} />, label: "Tailwind CSS", color: "#06B6D4" },
       { icon: <SiNextdotjs size={30} />, label: "Next.js", color: "#000000" },
       { icon: <SiNodedotjs size={30} />, label: "Node.js", color: "#8CC84B" },
-      { icon: <SiVite size={30} />, label: "Vite", color: "#646CFF" }, 
+      { icon: <SiVite size={30} />, label: "Vite", color: "#646CFF" },
     ],
     "Bases de datos": [
       { icon: <SiPostgresql size={30} />, label: "PostgreSQL", color: "#336791" },
@@ -61,14 +61,14 @@ const About = () => {
           >
             <span className="text-gray-400">// Código de presentación</span> <br />
             <span className="text-blue-400">const</span> <span className="text-yellow-400">aboutMe</span> <span className="text-blue-400">=</span> <span className="text-blue-500">&#123;</span><br />
-            &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-pink-400">description</span>: <span className="text-green-400">'Desarrollador Full Stack especializado en la creación de aplicaciones web modernas y funcionales.'</span>,<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-pink-400">experience</span>: <span className="text-green-400">'2 años de experiencia en desarrollo web, desde la planificación hasta la producción.'</span>,<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-pink-400">description</span>: <span className="text-green-400">"Desarrollador Full Stack especializado en la creación de aplicaciones web modernas y funcionales."</span>,<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-pink-400">experience</span>: <span className="text-green-400">"2 años de experiencia en desarrollo web, desde la planificación hasta la producción."</span>,<br />
             &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-pink-400">skills</span>: <span className="text-blue-500">[</span><br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">'JavaScript'</span>, <span className="text-green-400">'React'</span>, <span className="text-green-400">'Node.js'</span>, <span className="text-green-400">'Redux'</span>, <span className="text-green-400">'PostgreSQL'</span>, <br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">'HTML'</span>, <span className="text-green-400">'CSS'</span>, <span className="text-green-400">'Tailwind CSS'</span>, <span className="text-green-400">'Next.js'</span>, <br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">'Figma'</span><br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"JavaScript"</span>, <span className="text-green-400">"React"</span>, <span className="text-green-400">"Node.js"</span>, <span className="text-green-400">"Redux"</span>, <span className="text-green-400">"PostgreSQL"</span>, <br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"HTML"</span>, <span className="text-green-400">"CSS"</span>, <span className="text-green-400">"Tailwind CSS"</span>, <span className="text-green-400">"Next.js"</span>, <br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">"Figma"</span><br />
             &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-blue-500">]</span>,<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-pink-400">motivation</span>: <span className="text-green-400">'Apasionado por el desarrollo de soluciones tecnológicas que mejoran la experiencia de usuario y optimizan procesos.'</span>,<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-pink-400">motivation</span>: <span className="text-green-400">"Apasionado por el desarrollo de soluciones tecnológicas que mejoran la experiencia de usuario y optimizan procesos."</span>,<br />
             &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-pink-400">openToOpportunities</span>: <span className="text-blue-400">true</span>,<br />
             &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-blue-500">&#125;</span><br />
             <span className="text-blue-500">&#125;</span>;
@@ -124,6 +124,6 @@ const About = () => {
       </div>
     </section>
   );
-}
+};
 
 export default About;
