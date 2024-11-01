@@ -54,7 +54,7 @@ const Hero = () => {
   }, [typedText, isTyping, currentIndex, messages]);
 
   useEffect(() => {
-    if (typeof window === "undefined") return; {
+    if (typeof window !== "undefined") {
       const generateLogosData = (count) => {
         const data = [];
         for (let i = 0; i < count; i++) {
@@ -140,45 +140,6 @@ const Hero = () => {
         >
           <h1 className="text-5xl font-bold">👋 ¡Hola! Soy Santiago Perez</h1>
           <p className="mt-4 text-xl">{typedText}</p>
-
-          <div className="mt-6 space-x-4">
-            <motion.a
-              href="#projects"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-block px-6 py-3 bg-teal-400 text-black rounded-lg text-lg font-semibold shadow-md hover:bg-teal-500 transition-colors"
-            >
-              Ver Mis Proyectos
-            </motion.a>
-
-            <motion.a
-              href="https://www.linkedin.com/in/tu-perfil"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg text-lg font-semibold shadow-md hover:bg-blue-700 transition-colors"
-            >
-              LinkedIn
-            </motion.a>
-
-            <motion.a
-              href="mailto:tu-email@example.com"
-              className="inline-block px-6 py-3 bg-gray-600 text-white rounded-lg text-lg font-semibold shadow-md hover:bg-gray-700 transition-colors"
-            >
-              Contactar
-            </motion.a>
-
-            <motion.a
-              href="/ruta/a/tu/cv.pdf"
-              download
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-block px-6 py-3 bg-green-600 text-white rounded-lg text-lg font-semibold shadow-md hover:bg-green-700 transition-colors"
-            >
-              Descargar CV
-            </motion.a>
-          </div>
         </motion.div>
       </div>
     </section>
