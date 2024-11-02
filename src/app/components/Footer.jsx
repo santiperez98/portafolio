@@ -6,10 +6,10 @@ import Image from "next/image";
 import image1 from '../public/yo.png'
 const Footer = () => {
   return (
-    <footer className="bg-[#1c1c1c] text-white text-center py-8 relative overflow-hidden">
+    <footer className="bg-[#1c1c1c] text-[#10f7c4] text-center py-8 relative overflow-hidden">
       {/* Fondo animado */}
       <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 opacity-30 rounded-lg blur-xl scale-150"
+        className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-500 opacity-30 rounded-lg blur-xl scale-150"
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ duration: 5, ease: "linear", repeat: Infinity }}

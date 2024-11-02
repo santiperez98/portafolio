@@ -32,7 +32,7 @@ const Projects = () => {
         transition={{ duration: 0.5 }}
         className="container mx-auto text-center"
       >
-        <h2 className="text-4xl font-bold text-cyan-400 mb-12">Proyectos</h2>
+        <h2 className="text-4xl font-bold text-[#10f7c4] mb-12">Proyectos</h2>
         <div className="flex flex-col gap-12">
           {projectsData.map((project) => (
             <motion.div
@@ -44,7 +44,7 @@ const Projects = () => {
                 delay: project.id * 0.3,
               }}
               viewport={{ once: true }}
-              className="flex bg-white/10 backdrop-blur-lg shadow-lg p-6 rounded-xl transition-transform transform hover:scale-105 hover:shadow-cyan-400/50 w-full md:w-3/4 lg:w-2/3 mx-auto"
+              className="flex bg-white/10 backdrop-blur-lg shadow-lg p-6 rounded-xl transition-transform transform hover:scale-105 hover:shadow-[#10f7c4] w-full md:w-3/4 lg:w-2/3 mx-auto"
             >
               <div className="relative w-1/3 rounded-lg overflow-hidden">
                 <Image
@@ -54,11 +54,11 @@ const Projects = () => {
                 />
               </div>
               <div className="ml-6 flex flex-col justify-center text-left w-2/3">
-                <h3 className="text-2xl font-semibold text-cyan-400">{project.title}</h3>
+                <h3 className="text-2xl font-semibold text-[#10f7c4]">{project.title}</h3>
                 <p className="text-gray-300 my-4">{project.description}</p>
-                <div className="flex gap-4 text-2xl text-cyan-400">
+                <div className="flex gap-4 text-2xl text-[#10f7c4]">
                   {project.technologies.map((tech, techIndex) => (
-                    <span key={`${project.id}-${techIndex}`} className="hover:text-cyan-600 transition duration-200">
+                    <span key={`${project.id}-${techIndex}`} className="hover:text-[#10f7c4] transition duration-200">
                       {tech}
                     </span>
                   ))}
