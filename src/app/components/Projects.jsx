@@ -81,7 +81,7 @@ const Projects = () => {
         <div className="flex flex-col gap-12">
           {projectsData.map((project) => (
             <motion.div
-              key={project.id}
+              key={project.id} // Key agregado aquí
               initial={{ opacity: 0, x: -100 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{
@@ -91,16 +91,16 @@ const Projects = () => {
               viewport={{ once: true }}
               className="flex bg-white/10 backdrop-blur-lg shadow-lg p-6 rounded-xl transition-transform transform hover:scale-105 hover:shadow-[#10f7c4] w-full md:w-3/4 lg:w-2/3 mx-auto"
             >
-<div className="relative w-1/3 aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">
-  <Image
-    src={project.image}
-    alt={`Imagen de ${project.title}`}
-    className="object-cover w-full h-auto"
-    layout="responsive" 
-    width={1280}
-    height={720}
-  />
-</div>
+              <div className="relative w-1/3 aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">
+                <Image
+                  src={project.image}
+                  alt={`Imagen de ${project.title}`}
+                  className="object-cover w-full h-auto transition-transform transform hover:scale-110 hover:animate-pulse" // Agregado efecto flick
+                  layout="responsive"
+                  width={1280}
+                  height={720}
+                />
+              </div>
               <div className="ml-6 flex flex-col justify-center text-left w-2/3">
                 <h3 className="text-2xl font-semibold text-[#10f7c4]">{project.title}</h3>
                 <p className="text-gray-300 text-sm italic">{project.duration}</p>
@@ -113,13 +113,13 @@ const Projects = () => {
                   ))}
                 </div>
                 <a 
-  href={project.link} 
-  className="text-sm text-[#10f7c4] mt-4 hover:underline"
-  target="_blank" 
-  rel="noopener noreferrer"
->
-  Ver sitio web
-</a>
+                  href={project.link} 
+                  className="text-sm text-[#10f7c4] mt-4 hover:underline"
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  Ver sitio web
+                </a>
               </div>
             </motion.div>
           ))}
