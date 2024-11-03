@@ -15,11 +15,17 @@ const CEOSection = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
+          whileHover={{ scale: 1.1, opacity: 0.9 }} // Efecto de escalado al pasar el mouse
         >
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileHover={{ opacity: 1, transition: { duration: 0.3 } }} // Añade un efecto de destello
+            className="absolute inset-0 bg-[#10f7c4] opacity-30 rounded-lg"
+          />
           <Image
             src={image1}
             alt="CEO of Desweby"
-            className="w-48 h-48 rounded-full mx-auto mb-6"
+            className="w-48 h-48 mx-auto mb-6 object-cover relative" // Añadido "relative" para el overlay
             width={192} 
             height={192} 
           />
@@ -44,9 +50,6 @@ const CEOSection = () => {
         >
           Soy desarrollador especializado en la creación de soluciones web funcionales y de calidad. Con Desweby, me dedico a brindar servicios en desarrollo web, marketing digital, community management, SEO y diseño UX/UI.
         </motion.p>
-
-  
-        
       </div>
     </section>
   );

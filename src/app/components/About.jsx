@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { SiJavascript, SiHtml5, SiCss3, SiReact, SiRedux, SiTailwindcss, SiNextdotjs, SiPostgresql, SiNodedotjs, SiFigma, SiVite } from "react-icons/si";
+import { SiJavascript, SiHtml5, SiCss3, SiReact, SiRedux, SiTailwindcss, SiNextdotjs, SiPostgresql, SiNodedotjs, SiFigma, SiVite, SiBootstrap, SiSequelize, SiSupabase, SiSocketdotio, SiStripe } from "react-icons/si";
 
 const About = () => {
   const skills = {
@@ -18,9 +18,18 @@ const About = () => {
       { icon: <SiNextdotjs size={30} />, label: "Next.js", color: "#000000" },
       { icon: <SiNodedotjs size={30} />, label: "Node.js", color: "#8CC84B" },
       { icon: <SiVite size={30} />, label: "Vite", color: "#646CFF" },
+      { icon: <SiBootstrap size={30} />, label: "Bootstrap", color: "#7952B3" },
     ],
     "Bases de datos": [
       { icon: <SiPostgresql size={30} />, label: "PostgreSQL", color: "#336791" },
+      { icon: <SiSupabase size={30} />, label: "Supabase", color: "#3ECF8E" },
+    ],
+    "ORMs": [
+      { icon: <SiSequelize size={30} />, label: "Sequelize", color: "#52B0E7" },
+    ],
+    "APIs y Servicios": [
+      { icon: <SiSocketdotio size={30} />, label: "Socket.io", color: "#010101" },
+      { icon: <SiStripe size={30} />, label: "Stripe", color: "#6772E5" },
     ],
     "Herramientas de diseño": [
       { icon: <SiFigma size={30} />, label: "Figma", color: "#F24E1E" },
@@ -63,10 +72,6 @@ const About = () => {
             <span className="text-blue-400">const</span> <span className="text-yellow-400">aboutMe</span> <span className="text-blue-400">=</span> <span className="text-blue-500">&#123;</span><br />
             &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-pink-400">description</span>: <span className="text-green-400">Desarrollador Full Stack especializado en la creación de aplicaciones web modernas y funcionales.</span>,<br />
             &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-pink-400">experience</span>: <span className="text-green-400">2 años de experiencia en desarrollo web, desde la planificación hasta la producción.</span>,<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-pink-400">skills</span>: <span className="text-blue-500">[</span><br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">JavaScript</span>, <span className="text-green-400">React</span>, <span className="text-green-400">Node.js</span>, <span className="text-green-400">Redux</span>, <span className="text-green-400">PostgreSQL</span>, <br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">HTML</span>, <span className="text-green-400">CSS</span>, <span className="text-green-400">Tailwind CSS</span>, <span className="text-green-400">Next.js</span>, <br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">Figma</span><br />
             &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-blue-500">]</span>,<br />
             &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-pink-400">motivation</span>: <span className="text-green-400">Apasionado por el desarrollo de soluciones tecnológicas que mejoran la experiencia de usuario y optimizan procesos.</span>,<br />
             &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-pink-400">openToOpportunities</span>: <span className="text-blue-400">true</span>,<br />
@@ -81,7 +86,7 @@ const About = () => {
         {/* Enlaces de contacto */}
         <div className="mt-12 flex justify-center gap-6">
           <motion.a
-            href="https://github.com/tuusuario"
+            href="https://github.com/santiperez98"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ color: "#181717" }}
@@ -90,7 +95,7 @@ const About = () => {
             <FaGithub size={24} className="mr-2" /> GitHub
           </motion.a>
           <motion.a
-            href="https://www.linkedin.com/in/tuusuario"
+            href="https://www.linkedin.com/in/santiago-perez-0248b622a/"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ color: "#0A66C2" }}
