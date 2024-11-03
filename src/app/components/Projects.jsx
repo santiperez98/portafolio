@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 import { FaReact, FaNodeJs, FaDatabase, FaHtml5, FaCss3Alt, FaJsSquare, FaBootstrap, FaStripe } from "react-icons/fa";
 import { SiSupabase, SiTailwindcss, SiExpress, SiPostgresql, SiSocketdotio, SiVite, SiSequelize } from "react-icons/si";
 import Image from 'next/image';
@@ -14,11 +14,11 @@ import image6 from '../public/food.png';
 const Projects = () => {
   const projectsData = [
     {
-      id: 1, 
+      id: 1,
       title: "NyG Accesorios",
       duration: "Sep. 2023 – Oct. 2023 | Freelance",
       description: "E-commerce para la venta de accesorios de automóviles. Diseño de interfaz con HTML y CSS. Implementación de lógica de interacción con JavaScript. Administración de productos y gestión del inventario.",
-      technologies: [<FaHtml5 />, <FaCss3Alt />, <FaJsSquare />, <FaBootstrap />],
+      technologies: [<FaHtml5 key="html" />, <FaCss3Alt key="css" />, <FaJsSquare key="js" />, <FaBootstrap key="bootstrap" />],
       image: image1,
       link: "https://nyg--accesorios.web.app/"
     },
@@ -27,7 +27,7 @@ const Projects = () => {
       title: "Frio Mundo",
       duration: "Dic. 2023 – Ene. 2024 | Freelance",
       description: "Plataforma de e-commerce para productos de refrigeración. Desarrollo del frontend utilizando React y Tailwind CSS. Integración de Supabase para la gestión de datos en tiempo real.",
-      technologies: [<FaReact />, <SiTailwindcss />, <FaJsSquare />, <SiSupabase />],
+      technologies: [<FaReact key="react" />, <SiTailwindcss key="tailwind" />, <FaJsSquare key="js" />, <SiSupabase key="supabase" />],
       image: image2,
       link: "https://pruebaa-226bf.web.app/"
     },
@@ -36,7 +36,7 @@ const Projects = () => {
       title: "Cerámicas San Rafael",
       duration: "Abr. 2024 – May. 2024 | Freelance",
       description: "E-commerce para productos cerámicos. Diseño y desarrollo de interfaces con React y Tailwind CSS. Integración de bases de datos en tiempo real mediante Supabase.",
-      technologies: [<FaReact />, <SiTailwindcss />, <FaJsSquare />, <SiSupabase />],
+      technologies: [<FaReact key="react" />, <SiTailwindcss key="tailwind" />, <FaJsSquare key="js" />, <SiSupabase key="supabase" />],
       image: image3,
       link: "https://www.ceramicassanrafael.com/"
     },
@@ -45,7 +45,7 @@ const Projects = () => {
       title: "La Diamantina",
       duration: "Sep. 2024 – Oct. 2024 | Freelance",
       description: "E-commerce para productos de piedras de afilar. Creación de una página web con React, Vite y Tailwind CSS. Backend en Node.js y base de datos PostgreSQL.",
-      technologies: [<FaReact />, <SiVite />, <SiTailwindcss />, <FaJsSquare />, <FaNodeJs />, <SiPostgresql />],
+      technologies: [<FaReact key="react" />, <SiVite key="vite" />, <SiTailwindcss key="tailwind" />, <FaJsSquare key="js" />, <FaNodeJs key="node" />, <SiPostgresql key="postgresql" />],
       image: image4,
       link: "https://ladiamantina.com.ar/"
     },
@@ -54,7 +54,7 @@ const Projects = () => {
       title: "Dogs",
       duration: "Ago. 2023 – Sept. 2023 | Henry Bootcamp",
       description: "Aplicación web sobre razas de perros. Interfaz con React y module.css. Backend con Node.js, Express y PostgreSQL.",
-      technologies: [<FaReact />, <FaJsSquare />, <SiExpress />, <FaNodeJs />, <SiPostgresql />, <SiSequelize />],
+      technologies: [<FaReact key="react" />, <FaJsSquare key="js" />, <SiExpress key="express" />, <FaNodeJs key="node" />, <SiPostgresql key="postgresql" />, <SiSequelize key="sequelize" />],
       image: image5,
       link: "https://dogs-i2ap3lu0c-santiagois-projects.vercel.app/"
     },
@@ -63,7 +63,7 @@ const Projects = () => {
       title: "Food Global",
       duration: "Oct. 2023 – Nov. 2023 | Henry Bootcamp",
       description: "Plataforma de e-commerce global para compras de alimentos. Frontend en React y Tailwind CSS. Notificaciones en tiempo real con Socket.io y pasarela de pago con Stripe.",
-      technologies: [<FaReact />, <FaJsSquare />, <SiTailwindcss />, <SiExpress />, <FaNodeJs />, <SiPostgresql />, <SiSocketdotio />, <FaStripe />],
+      technologies: [<FaReact key="react" />, <FaJsSquare key="js" />, <SiTailwindcss key="tailwind" />, <SiExpress key="express" />, <FaNodeJs key="node" />, <SiPostgresql key="postgresql" />, <SiSocketdotio key="socket" />, <FaStripe key="stripe" />],
       image: image6,
       link: "https://front-food-global-pf.vercel.app/"
     },
@@ -81,7 +81,7 @@ const Projects = () => {
         <div className="flex flex-col gap-12">
           {projectsData.map((project) => (
             <motion.div
-              key={project.id} // Key agregado aquí
+              key={project.id}
               initial={{ opacity: 0, x: -100 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{
@@ -95,7 +95,7 @@ const Projects = () => {
                 <Image
                   src={project.image}
                   alt={`Imagen de ${project.title}`}
-                  className="object-cover w-full h-auto transition-transform transform hover:scale-110 hover:animate-pulse" // Agregado efecto flick
+                  className="object-cover w-full h-auto transition-transform transform hover:scale-110 hover:animate-pulse"
                   layout="responsive"
                   width={1280}
                   height={720}
@@ -106,11 +106,11 @@ const Projects = () => {
                 <p className="text-gray-300 text-sm italic">{project.duration}</p>
                 <p className="text-gray-300 my-4">{project.description}</p>
                 <div className="flex gap-4 text-2xl text-[#10f7c4]">
-                {project.technologies.map((tech, techIndex) => (
-  <span key={`${project.id}-${techIndex}`} className="hover:text-[#10f7c4] transition duration-200">
-    {tech}
-  </span>
-))}
+                  {project.technologies.map((tech, techIndex) => (
+                    <span key={`${project.id}-${techIndex}`} className="hover:text-[#10f7c4] transition duration-200">
+                      {tech}
+                    </span>
+                  ))}
                 </div>
                 <a 
                   href={project.link} 

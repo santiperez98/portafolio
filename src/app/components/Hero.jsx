@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import heroImage from "../public/yo.png";
-import { useEffect, useState } from "react";
 import techLogo1 from "../public/js.png";
 import techLogo2 from "../public/css.png";
 import techLogo3 from "../public/figma.png";
@@ -15,7 +14,7 @@ import techLogo8 from "../public/html.png";
 import techLogo9 from "../public/redux1.png";
 import techLogo10 from "../public/tail.png";
 import techLogo11 from "../public/postgre.png";
-
+import { useEffect, useState } from "react"; 
 const logos = [techLogo1, techLogo2, techLogo3, techLogo4, techLogo5, techLogo6, techLogo7, techLogo8, techLogo9, techLogo10, techLogo11];
 
 const Hero = () => {
@@ -54,47 +53,46 @@ const Hero = () => {
   }, [typedText, isTyping, currentIndex, messages]);
 
   useEffect(() => {
-    if (typeof window === "undefined") return; {
-      const generateLogosData = (count) => {
-        const data = [];
-        for (let i = 0; i < count; i++) {
-          data.push({
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
-            dx: (Math.random() * 2 - 1) * 1,
-            dy: (Math.random() * 2 - 1) * 1,
-          });
-        }
-        return data;
-      };
+    if (typeof window === "undefined") return;
+    const generateLogosData = (count) => {
+      const data = [];
+      for (let i = 0; i < count; i++) {
+        data.push({
+          x: Math.random() * window.innerWidth,
+          y: Math.random() * window.innerHeight,
+          dx: (Math.random() * 2 - 1) * 1,
+          dy: (Math.random() * 2 - 1) * 1,
+        });
+      }
+      return data;
+    };
 
-      setLogosData(generateLogosData(logos.length));
+    setLogosData(generateLogosData(logos.length));
 
-      const moveLogos = () => {
-        setLogosData((prevLogosData) =>
-          prevLogosData.map((logo) => {
-            let newX = logo.x + logo.dx;
-            let newY = logo.y + logo.dy;
+    const moveLogos = () => {
+      setLogosData((prevLogosData) =>
+        prevLogosData.map((logo) => {
+          let newX = logo.x + logo.dx;
+          let newY = logo.y + logo.dy;
 
-            if (newX <= 0 || newX >= window.innerWidth - 100) {
-              logo.dx = -logo.dx;
-            }
-            if (newY <= 0 || newY >= window.innerHeight - 100) {
-              logo.dy = -logo.dy;
-            }
+          if (newX <= 0 || newX >= window.innerWidth - 100) {
+            logo.dx = -logo.dx;
+          }
+          if (newY <= 0 || newY >= window.innerHeight - 100) {
+            logo.dy = -logo.dy;
+          }
 
-            return {
-              ...logo,
-              x: newX,
-              y: newY,
-            };
-          })
-        );
-      };
+          return {
+            ...logo,
+            x: newX,
+            y: newY,
+          };
+        })
+      );
+    };
 
-      const interval = setInterval(moveLogos, 20);
-      return () => clearInterval(interval);
-    }
+    const interval = setInterval(moveLogos, 20);
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -157,7 +155,7 @@ const Hero = () => {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg text-lg font-semibold shadow-md hover:bg-blue-700 transition-colors"
+              className="inline-block px -6 py-3 bg-blue-600 text-white rounded-lg text-lg font-semibold shadow-md hover:bg-blue-700 transition-colors"
             >
               LinkedIn
             </motion.a>
