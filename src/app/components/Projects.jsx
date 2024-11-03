@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "framer-motion"
 import { FaReact, FaNodeJs, FaDatabase, FaHtml5, FaCss3Alt, FaJsSquare, FaBootstrap, FaStripe } from "react-icons/fa";
 import { SiSupabase, SiTailwindcss, SiExpress, SiPostgresql, SiSocketdotio, SiVite, SiSequelize } from "react-icons/si";
 import Image from 'next/image';
