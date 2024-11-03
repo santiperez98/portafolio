@@ -106,11 +106,11 @@ const Projects = () => {
                 <p className="text-gray-300 text-sm italic">{project.duration}</p>
                 <p className="text-gray-300 my-4">{project.description}</p>
                 <div className="flex gap-4 text-2xl text-[#10f7c4]">
-                  {project.technologies.map((tech, techIndex) => (
-                    <span key={`${project.id}-${techIndex}`} className="hover:text-[#10f7c4] transition duration-200">
-                      {tech}
-                    </span>
-                  ))}
+                {project.technologies.map((tech, techIndex) => (
+  <span key={`${project.id}-${techIndex}`} className="hover:text-[#10f7c4] transition duration-200">
+    {tech}
+  </span>
+))}
                 </div>
                 <a 
                   href={project.link} 
