@@ -66,8 +66,8 @@ const Contact = () => {
             value={formik.values.email}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            className={`w-full p-4 rounded-lg bg-transparent border-2 border-[#10f7c4]text-white focus:ring-2 focus:ring-cyan-500 transition-all duration-300 transform hover:scale-105 ${
-              formik.touched.email && formik.errors.email ? "border-[#10f7c4]" : ""
+            className={`w-full p-4 rounded-lg bg-transparent border-2 border-[#10f7c4] text-white focus:ring-2 focus:ring-cyan-500 transition-all duration-300 transform hover:scale-105 ${
+              formik.touched.email && formik.errors.email ? "border-red-500" : ""
             }`}
             required
           />
