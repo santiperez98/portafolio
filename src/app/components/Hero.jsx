@@ -97,6 +97,12 @@ const Hero = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const scrollToContact = () => {
+    const contactSection = document.getElementById("contact");
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   const downloadCV = () => {
     const link = document.createElement('a');
     link.href = 'https://drive.google.com/uc?export=download&id=1Zl774-MHTSFAshrYyvbYYgpj_YN_x0YE'; // Enlace de descarga directa
@@ -172,6 +178,7 @@ const Hero = () => {
             </motion.a>
 
             <motion.a
+            onClick={scrollToContact}
               href="mailto:tu-email@example.com"
               className="inline-block px-6 py-3 bg-gray-600 text-white rounded-lg text-lg font-semibold shadow-md hover:bg-gray-700 transition-colors"
             >
