@@ -15,6 +15,8 @@ import techLogo9 from "../public/redux1.png";
 import techLogo10 from "../public/tail.png";
 import techLogo11 from "../public/postgre.png";
 import { useEffect, useState } from "react"; 
+
+
 const logos = [techLogo1, techLogo2, techLogo3, techLogo4, techLogo5, techLogo6, techLogo7, techLogo8, techLogo9, techLogo10, techLogo11];
 
 const Hero = () => {
@@ -95,6 +97,15 @@ const Hero = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const downloadCV = () => {
+    const link = document.createElement('a');
+    link.href = 'https://drive.google.com/uc?export=download&id=1Zl774-MHTSFAshrYyvbYYgpj_YN_x0YE'; // Enlace de descarga directa
+    link.setAttribute('download', 'mi-cv.pdf'); // Nombre con el que se descargará
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <section className="relative bg-[#1c1c1c] text-white h-screen flex items-center justify-center px-10 font-mono overflow-hidden">
       <div className="absolute inset-0 z-0 overflow-hidden">
@@ -150,12 +161,12 @@ const Hero = () => {
             </motion.a>
 
             <motion.a
-              href="https://www.linkedin.com/in/tu-perfil"
+              href="https://www.linkedin.com/in/santiago-perez-0248b622a/"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-block px -6 py-3 bg-blue-600 text-white rounded-lg text-lg font-semibold shadow-md hover:bg-blue-700 transition-colors"
+              className="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg text-lg font-semibold shadow-md hover:bg-blue-700 transition-colors"
             >
               LinkedIn
             </motion.a>
@@ -168,14 +179,13 @@ const Hero = () => {
             </motion.a>
 
             <motion.a
-              href="/ruta/a/tu/cv.pdf"
-              download
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-block px-6 py-3 bg-green-600 text-white rounded-lg text-lg font-semibold shadow-md hover:bg-green-700 transition-colors"
-            >
-              Descargar CV
-            </motion.a>
+  onClick={downloadCV}
+  whileHover={{ scale: 1.1 }}
+  whileTap={{ scale: 0.95 }}
+  className="inline-block px-6 py-3 bg-green-600 text-white rounded-lg text-lg font-semibold shadow-md hover:bg-green-700 transition-colors"
+>
+  Descargar CV
+</motion.a>
           </div>
         </motion.div>
       </div>
