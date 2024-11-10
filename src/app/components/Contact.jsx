@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import emailjs from "emailjs-com";
 
 const Contact = () => {
   const formik = useFormik({
@@ -23,8 +24,29 @@ const Contact = () => {
         .max(500, "El mensaje no puede exceder los 500 caracteres"),
     }),
     onSubmit: (values) => {
-      console.log(values);
-      
+      // Aquí usas emailjs para enviar el correo
+      emailjs
+        .send(
+          "service_bskbyv2", // Este es tu Service ID
+          "template_6o965sg", // Este es tu Template ID
+          {
+            name: values.name,
+            email: values.email,
+            message: values.message,
+          },
+          "QmOlOePyPj5BKGDqE" // Este es tu User ID
+        )
+        .then(
+          (response) => {
+            console.log("Correo enviado", response);
+            alert("Correo enviado exitosamente.");
+            formik.resetForm(); // Resetea el formulario después de enviar
+          },
+          (error) => {
+            console.error("Error al enviar correo", error);
+            alert("Hubo un error al enviar el correo.");
+          }
+        );
     },
   });
 
@@ -45,7 +67,7 @@ const Contact = () => {
         <form onSubmit={formik.handleSubmit} className="space-y-6">
           <motion.input
             type="text"
-            name="name" 
+            name="name"
             placeholder="Tu nombre"
             value={formik.values.name}
             onChange={formik.handleChange}
@@ -61,7 +83,7 @@ const Contact = () => {
 
           <motion.input
             type="email"
-            name="email" 
+            name="email"
             placeholder="Tu correo"
             value={formik.values.email}
             onChange={formik.handleChange}
@@ -76,7 +98,7 @@ const Contact = () => {
           )}
 
           <motion.textarea
-            name="message" 
+            name="message"
             placeholder="Tu mensaje"
             value={formik.values.message}
             onChange={formik.handleChange}
